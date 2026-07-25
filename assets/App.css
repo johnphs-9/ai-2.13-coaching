@@ -1,0 +1,62 @@
+/* src/App.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #1a202c;
+}
+
+.app {
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+  padding: 1rem;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-contact-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-contact-form input {
+  flex: 1;
+  padding: 0.4rem;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.status-message.error {
+  color: red;
+}
