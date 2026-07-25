@@ -742,8 +742,8 @@ This is where `useState` accepts a **type parameter**: a type, written inside an
 
 ```ts
 useState<Contact[]>([]);
-//       ^^^^^^^^^ a type, passed as a type parameter
-//                  ^^ a value, passed as a regular argument
+// `Contact[]`: a type, passed as a type parameter
+// `[]`: a value, passed as a regular argument
 ```
 
 Without the type parameter, TypeScript infers `never[]`. With it, TypeScript treats the state as `Contact[]`, even though the value passed in right now is empty. This is why `useState` is called a **generic function**: it is not hardcoded to hold one specific type, it holds whatever type you tell it to, via the type parameter.
@@ -1081,20 +1081,20 @@ const [contacts, setContacts] = useState<Contact[]>([]);
 
 Use this table as a quick reference after the lesson. It lists the parts of a component that need a type annotation, and what to reach for.
 
-| What                                                   | Typical annotation                                                               | Example                                                                |
-| ------------------------------------------------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Object / data shape                                    | `type`                                                                           | `type Contact = { id: number; name: string; email: string; };`         |
-| Union of fixed values                                  | `type`                                                                           | `type Status = 'active' \| 'inactive' \| 'pending';`                   |
-| Component props                                        | `type` above the component, destructured in the signature                        | `function ContactList({ contacts }: ContactListProps)`                 |
-| Optional prop                                          | `?` after the field name                                                         | `title?: string;`                                                      |
-| `useState`                                             | Type parameter, required when the initial value is `[]` or `null`                | `useState<Contact[]>([])`                                              |
-| Function prop / callback                               | Function type in the props type                                                  | `onRemove: (id: number) => void;`                                      |
-| Form submit handler (named, declared separately)       | `React.SubmitEvent<HTMLFormElement>` on the `e` parameter                        | `const handleAdd = (e: React.SubmitEvent<HTMLFormElement>) => { ... }` |
-| Input change handler (inline, written in the JSX prop) | No annotation needed; contextual typing infers it                                | `onChange={e => setNewName(e.target.value)}`                           |
-| `children` prop                                        | `React.ReactNode`                                                                | `{ children }: { children: React.ReactNode }`                          |
-| API response                                           | Type annotation on the parsed JSON, or a validation library for untrusted sources | `data: Contact[]` (or Yup, see Lesson 2.11)                          |
-| Context value                                          | `type`, unioned with `null` in `createContext`                                   | `createContext<AuthContextValue \| null>(null)`                        |
-| Custom hook return                                     | Explicit return type on the hook function                                        | `function useContacts(): { contacts: Contact[]; addContact: ... }`     |
+| What                                                   | Typical annotation                                                                | Example                                                                |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Object / data shape                                    | `type`                                                                            | `type Contact = { id: number; name: string; email: string; };`         |
+| Union of fixed values                                  | `type`                                                                            | `type Status = 'active' \| 'inactive' \| 'pending';`                   |
+| Component props                                        | `type` above the component, destructured in the signature                         | `function ContactList({ contacts }: ContactListProps)`                 |
+| Optional prop                                          | `?` after the field name                                                          | `title?: string;`                                                      |
+| `useState`                                             | Type parameter, required when the initial value is `[]` or `null`                 | `useState<Contact[]>([])`                                              |
+| Function prop / callback                               | Function type in the props type                                                   | `onRemove: (id: number) => void;`                                      |
+| Form submit handler (named, declared separately)       | `React.SubmitEvent<HTMLFormElement>` on the `e` parameter                         | `const handleAdd = (e: React.SubmitEvent<HTMLFormElement>) => { ... }` |
+| Input change handler (inline, written in the JSX prop) | No annotation needed; contextual typing infers it                                 | `onChange={e => setNewName(e.target.value)}`                           |
+| `children` prop                                        | `React.ReactNode`                                                                 | `{ children }: { children: React.ReactNode }`                          |
+| API response                                           | Type annotation on the parsed JSON, or a validation library for untrusted sources | `data: Contact[]` (or Yup, see Lesson 2.11)                            |
+| Context value                                          | `type`, unioned with `null` in `createContext`                                    | `createContext<AuthContextValue \| null>(null)`                        |
+| Custom hook return                                     | Explicit return type on the hook function                                         | `function useContacts(): { contacts: Contact[]; addContact: ... }`     |
 
 > **Rule of thumb:** if you can hover over a value in your editor and it already shows the type you want, you do not need to write it. Add explicit annotations where TypeScript cannot infer enough on its own, most often: empty initial state, function parameters, event handlers, and data coming from outside the app (APIs, `localStorage`, user input).
 
