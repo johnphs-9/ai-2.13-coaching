@@ -414,7 +414,7 @@ Add a props type above the `ContactList` function, now in its own file:
 
 ```tsx
 // src/components/ContactList.tsx
-import { Contact } from "../types/Contact";
+import type { Contact } from "../types/Contact";
 
 type ContactListProps = {
   contacts: Contact[];
