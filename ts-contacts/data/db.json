@@ -1,0 +1,9 @@
+// data/db.json
+{
+  "contacts": [
+    { "id": 1, "name": "Alice Tan", "email": "alice@example.com" },
+    { "id": 2, "name": "Bob Lim", "email": "bob@example.com" },
+    { "id": 3, "name": "Carol Wong", "email": "carol@example.com" },
+    { "id": 4, "name": "David Chen", "email": "david@example.com" }
+  ]
+}
